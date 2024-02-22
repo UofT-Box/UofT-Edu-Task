@@ -1,0 +1,82 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Research content ideas",
+      "subtasks": [
+        {
+          "title": "Topic 1",
+          "completed": false
+        },
+        {
+          "title": "Topic 2",
+          "completed": true
+        }
+      ],
+      "date": "24-02-21",
+      "tags": ["Work", "Urgent"]
+    },
+    {
+      "id": 2,
+      "title": "Create a database of guest authors",
+      "subtasks": [
+        {
+          "title": "Contact author A",
+          "completed": true
+        },
+        {
+          "title": "Contact author B",
+          "completed": false
+        }
+      ],
+      "date": "24-02-25",
+      "tags": ["Work"]
+    },
+    {
+      "id": 3,
+      "title": "Renew driver's license",
+      "subtasks": [
+        {
+          "title": "Fill out form",
+          "completed": false
+        },
+        {
+          "title": "Take photo",
+          "completed": false
+        }
+      ],
+      "tags": ["Personal"]
+    },
+    {
+      "id": 4,
+      "title": "Consult accountant",
+      "subtasks": [],
+      "tags": []
+    },
+    {
+      "id": 5,
+      "title": "Print business card",
+      "subtasks": [
+        {
+          "title": "Design card",
+          "completed": true
+        },
+        {
+          "title": "Order printing",
+          "completed": false
+        }
+      ],
+      "tags": ["Networking"]
+    }
+  ],
+  "tagsColors": {
+    "Work": "#ffadad",
+    "Urgent": "#ffd6a5",
+    "Personal": "#fdffb6",
+    "Networking": "#caffbf"
+  },
+  "dates":{
+    "24-02-21": [1]
+  }
+}
+
