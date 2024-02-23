@@ -124,6 +124,8 @@ export default {
 }
 
 .search-bar {
+  margin-left: 8px;
+  margin-right: 8px; /* 对齐 */
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -132,7 +134,7 @@ export default {
 
 .search-icon {
   width: 16px; /* 或根据您的设计调整 */
-  margin-left: 10px;
+  margin-right: 10px;
 }
 
 input[type="text"] {
@@ -142,6 +144,8 @@ input[type="text"] {
   border: none;
   /* box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); */
   outline: none;
+  border: 1px solid #e7e7e7;
+  border-radius: 8px; /* 给搜索框添加边框 */
 }
 
 .menu-section-list {
@@ -151,23 +155,8 @@ input[type="text"] {
 .menu-section {
   flex-grow: 1;
   margin-bottom: 20px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-li {
-  cursor: pointer;
-  padding: 10px 20px;
-  border-left: 5px solid transparent;
-}
-
-li:hover {
-  background-color: #e7e7e7;
-  border-left: 5px solid #4a90e2;
+  border-top: 1px solid #e7e7e7; /* 给每个menu-section划区 */
+  padding-top: 10px;
 }
 
 .sidebar-footer {

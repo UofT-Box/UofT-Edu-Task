@@ -50,25 +50,30 @@ ul {
 
 li {
   cursor: pointer;
-  padding: 10px 20px;
-  border-left: 5px solid transparent;
+  margin: 5px 10px;
+  padding: 8px 20px;
+  border-radius: 8px; /* 为按钮添加圆角设计 */
   display: flex;
   align-items: center;
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   font-size: 16px;
   color: #333;
-  transition: background-color 0.3s, border-left-color 0.3s;
+  transition: background-color 0.3s, opacity 0.15s;
 }
 
 li:hover {
   background-color: #e7e7e7;
-  border-left: 5px solid #4a90e2;
+}
+
+li:active {
+  opacity: 0.8; /*为按钮添加触发动画*/
 }
 
 li img {
   margin-right: 10px;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
+  opacity: 0.8;
 }
 
 li.active {
@@ -93,6 +98,7 @@ ul {
 .menu-subtitle {
   padding-left: 20px;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .color-block {
@@ -102,10 +108,10 @@ ul {
   margin-right: 10px;
 }
 
-@media (max-width: 600px) {
+/*@media (max-width: 600px) {
   li {
     padding: 10px 15px;
     font-size: 14px;
   }
-}
+}*/
 </style>
