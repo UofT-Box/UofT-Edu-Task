@@ -75,7 +75,7 @@ export default {
   margin: 0 auto; /* 居中显示 */
   padding: 0px 20px 15px 25px; /* 上10px，右20px，下15px，左25px */
   background: white; /* 背景色 */
-  border-radius: 8px; /* 圆角 */
+  /* border-radius: 8px;  圆角 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 轻微的阴影效果 */
 }
 
@@ -90,6 +90,7 @@ export default {
 
 .header-title {
   margin-right: 18px; /* 在标题和分隔符之间添加一些空间 */
+  margin-left: 20px /*向右移动一点，与task-item对齐些*/
 }
 
 .header-divider {
@@ -113,14 +114,15 @@ export default {
   font-size: 50px; /* 计数字体大小 */
 }
 
-.add-task-btn {
-    margin-left: -20px;
-}
+/*.add-task-btn {
+  暂时没用了
+} */
 
 .add-plus {
     font-size: 23px;
     font-weight: 500;
-    margin-right: 17px;
+    margin-right: 22px;
+    margin-left: 3px; /* 与task-item对齐 */
     margin-top: -2px;
 }
 
@@ -133,8 +135,8 @@ export default {
   align-items: start;
   flex-direction: column;
   justify-content: space-between;
-  padding: 10px 0;
-  border-top: 1px solid #eee; /* 添加底部边框作为分隔线 */
+  padding: 10px 20px;
+  /* border-top: 1px solid #eee; 添加底部边框作为分隔线 */ /*加了圆角之后横线不好看了，被去掉了*/
   text-align: left;
 }
 
