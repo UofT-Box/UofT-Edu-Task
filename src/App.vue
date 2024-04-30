@@ -2,16 +2,18 @@
   <div id="app">
     <div class="wrapper">
       <Sidebar :handle-menu-item-click="handleMenuItemClick" />
-      <TodoList
-        v-if="currentView === 'today'"
-        listName="Today"
-        :tasks="tasksForDate(today)"
-      />
-      <TodoList
-        v-if="currentView === 'upcoming'"
-        listName="Upcoming"
-        :tasks="tasksNotForDate(today)"
-      />
+      <div class="content">
+        <TodoList
+          v-if="currentView === 'today'"
+          listName="Today"
+          :tasks="getTodayTask(today)"
+        />
+        <TodoList
+          v-if="currentView === 'upcoming'"
+          listName="Upcoming"
+          :tasks="getUpcomingTask(today)"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -32,6 +34,8 @@ export default {
       currentView: "Today",
       tasksByDate: tasksData["tasks"],
       today: "",
+      taskName: "",
+      
     };
   },
   mounted() {
@@ -53,10 +57,10 @@ export default {
       const day = now.getDate().toString().padStart(2, "0");
       this.today = `${year}-${month}-${day}`;
     },
-    tasksForDate(date) {
+    getTodayTask(date) {
       return this.tasksByDate.filter((tasksByDate) => tasksByDate.date <= date);
     },
-    tasksNotForDate(date) {
+    getUpcomingTask(date) {
       return this.tasksByDate.filter((tasksByDate) => tasksByDate.date > date);
     },
   },
@@ -66,10 +70,13 @@ export default {
 <style>
 #app {
   font-family: "Comic Sans MS", cursive;
-  display: flex;
+  /* display: flex; */
   height: 100vh;
 }
-
+.content {
+  display: flex;
+  min-width: calc(100% - 205px);
+}
 .wrapper {
   display: flex;
   flex: 1;
