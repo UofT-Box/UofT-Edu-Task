@@ -42,6 +42,10 @@ export default {
 </script>
 
 <style>
+.menu-items{
+  min-width: 205px;
+}
+
 ul {
   list-style-type: none;
   padding: 0;

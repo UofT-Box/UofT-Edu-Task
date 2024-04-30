@@ -1,12 +1,23 @@
 <template>
-  <div class="todo-list">
+  <div
+    :class="{
+      'todo-list': true,
+      'sm-w': this.showDetailInfo,
+    }"
+    @click.self="this.closeDetailInfoBar"
+  >
     <div class="header">
-      <h2 class="header-title">{{listName}}</h2>
+      <h2 class="header-title">{{ listName }}</h2>
       <span class="header-divider">|</span>
       <span class="task-count">{{ tasks.length }}</span>
     </div>
     <div class="task-list">
-      <li class="add-task-btn"><span class="add-plus">+</span>Add New Task</li>
+      <AddTaskBar
+        @focus="this.showDetailInfo = true"
+        @task-name="this.getTaskName"
+        :newTaskName="this.taskName"
+      />
+
       <ul>
         <li v-for="task in tasks" :key="task.id" class="task-item">
           <div class="task-details">
@@ -31,7 +42,10 @@
             </span>
             <span class="tags" v-if="task.tags.length">
               <span class="tag" v-for="tag in task.tags" :key="tag">
-                <span class="tag-color" :style="{ backgroundColor: getTagColor(tag) }"></span>
+                <span
+                  class="tag-color"
+                  :style="{ backgroundColor: getTagColor(tag) }"
+                ></span>
                 <!-- 颜色方块 -->
                 <span class="tag-name">{{ tag }}</span>
                 <!-- 标签名称 -->
@@ -42,41 +56,66 @@
       </ul>
     </div>
   </div>
+
+  <DetailInfoBar
+    :taskName="this.taskName"
+    @detail-bar-taskName="this.updateTaskNameFromDetailBar"
+    v-show="this.showDetailInfo"
+  />
 </template>
 
 <script>
+import AddTaskBar from "./AddTaskBar.vue";
+import DetailInfoBar from "./DetailInfoBar.vue";
+import tasksData from "../assets/userData.json"
 export default {
   name: "TodoList",
+  components: {
+    AddTaskBar,
+    DetailInfoBar,
+  },
   data() {
     return {
-      tagsColors: {
-        "Work": "#ffadad",
-        "Urgent": "#ffd6a5",
-        "Personal": "#fdffb6",
-        "Networking": "#caffbf"
-      },
+      tagsColors: tasksData['tag-list'],
+      taskName: "",
+      showDetailInfo: false,
     };
   },
   methods: {
     getTagColor(tag) {
-      return this.tagsColors[tag] || '#dddddd';
+      return this.tagsColors[tag] || "#dddddd";
+    },
+    getTaskName(data) {
+      console.log("ss");
+      this.taskName = data;
+    },
+    updateTaskNameFromDetailBar(data) {
+      if (data !== this.taskName) {
+        this.taskName = data;
+      }
+    },
+    closeDetailInfoBar(){
+      this.showDetailInfo = false;
     }
   },
-  props:{
+  props: {
     listName: String,
     tasks: Array,
-  }
+  },
 };
 </script>
 
 <style scoped>
 .todo-list {
-  min-width: 800px;
-  margin: 0 auto; /* 居中显示 */
   padding: 0px 20px 15px 25px; /* 上10px，右20px，下15px，左25px */
   background: white; /* 背景色 */
-  /* border-radius: 8px;  圆角 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 轻微的阴影效果 */
+  min-width: 100%;
+  transition: min-width 0.5s ease;
+}
+
+.sm-w {
+  min-width: 50%;
 }
 
 .header {
@@ -90,7 +129,7 @@ export default {
 
 .header-title {
   margin-right: 18px; /* 在标题和分隔符之间添加一些空间 */
-  margin-left: 20px /*向右移动一点，与task-item对齐些*/
+  margin-left: 20px; /*向右移动一点，与task-item对齐些*/
 }
 
 .header-divider {
@@ -112,18 +151,6 @@ export default {
   border-radius: 15px; /* 圆形背景 */
   font-weight: 300;
   font-size: 50px; /* 计数字体大小 */
-}
-
-/*.add-task-btn {
-  暂时没用了
-} */
-
-.add-plus {
-    font-size: 23px;
-    font-weight: 500;
-    margin-right: 22px;
-    margin-left: 3px; /* 与task-item对齐 */
-    margin-top: -2px;
 }
 
 .tasks {
@@ -249,7 +276,7 @@ export default {
   margin-right: 5px;
 }
 
-.tag-name{
-    font-size: 16px;
+.tag-name {
+  font-size: 16px;
 }
 </style>
